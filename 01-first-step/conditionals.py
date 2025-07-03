@@ -10,3 +10,23 @@ for car in cars:
 # Checking value exist
 print("bmw" in cars)
 print("toyota" not in cars)
+
+
+# If-elseIf-else
+score = 45
+
+if score < 40:
+    print("Fail")
+elif score > 40 and score < 80:
+    print("Pass")
+else:
+    print("High Score")
+
+
+# Empty Check
+topping = []
+
+if topping:
+    print("topping exist")
+else:
+    print("topping doesn't exist")

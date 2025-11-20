@@ -31,12 +31,12 @@ squares = [value ** 2 for value in range(12)]
 print(f'Squares Numbers: {squares}')
 
 # Slice
-fruits = ["apple", "orange", "grape", "pineapple"]
+fruits = ["apple", "orange", "grape", "pineapple", "watermelon"]
 print(fruits[2:3])
 print(fruits[:3])
 print(fruits[2:])
 print(fruits[-1:])
-print(fruits[1:3:2])
+print(fruits[1:4:2])
 
 # Copying Slice
 fruits2 = fruits[:]

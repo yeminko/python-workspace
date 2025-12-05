@@ -1,11 +1,12 @@
-from utility import printTodos, addTodo
+from utility import printTodos, addTodo, markAsDone, deleteTodo
 
-todos = []
-done_todos = []
+todos: list[str] = []
+done_todos: list[str] = []
 
-print('Welcome from My Todo App. Select an option to start! Type \'q\' to quit.')
+print('Welcome from My Todo App. Type \'q\' to quit.')
 
 while True:
+    print('Select an option')
     print('1. Add todo')
     print('2. Mark as done')
     print('3. Delete a todo')
@@ -15,6 +16,11 @@ while True:
 
     if option == '1':
         addTodo(todos)
-        printTodos(todos)
+        printTodos(todos, done_todos)
+    elif option == '2':
+        markAsDone(todos, done_todos)
+        printTodos(todos, done_todos)
+    elif option == '3':
+        deleteTodo(todos)
     elif option == 'q':
         break

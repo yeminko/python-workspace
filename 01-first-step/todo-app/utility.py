@@ -14,16 +14,26 @@ def markAsDone(todos: list[str], done_todos: list[str]) -> None:
 
 
 def deleteTodo(todos: list[str]):
-    print('delete todo..')
+    todoId = input('Enter todo\'s ID to delete: ')
+    index = int(todoId) - 1
+    del todos[index]
+
+
+def deleteAllTodos(todos: list[str]):
+    todos.clear()
 
 
 def printTodos(todos: list[str], done_todos: list[str]) -> None:
-    print('Your todos are: ')
-    for index, todo in enumerate(todos):
-        print(f'{index+1}. {todo}')
+    print('\nYour todos are: ')
+
+    if todos:
+        for index, todo in enumerate(todos):
+            print(f'{index+1}. {todo}')
+    else:
+        print('No todos for today!')
 
     if done_todos:
         print('Your done todos are: ')
         for index, done in enumerate(done_todos):
             print(f'{index+1}. {done}')
-    print('============================')
+    print()

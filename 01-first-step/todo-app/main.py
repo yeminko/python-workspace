@@ -1,6 +1,7 @@
-from utility import printTodos, addTodo, markAsDone, deleteTodo, deleteAllTodos
+from utility import printTodos, handleAddTodo, markAsDone, deleteTodo, deleteAllTodos
+from models.todo import Todo
 
-todos: list[str] = []
+todos: list[Todo] = []
 done_todos: list[str] = []
 
 print('Welcome from My Todo App. Type \'q\' to quit.')
@@ -14,7 +15,7 @@ while True:
         print()
 
         if option == '1':
-            addTodo(todos)
+            todos += handleAddTodo()
             printTodos(todos, done_todos)
         elif option == '2':
             markAsDone(todos, done_todos)

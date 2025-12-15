@@ -1,9 +1,18 @@
-def addTodo(todos: list[str]) -> None:
+from models.todo import Todo
+
+
+def handleAddTodo() -> list[Todo]:
+    todos: list[Todo] = []
+
     while True:
-        todo = input('Add Todo: ')
-        if todo == 'done':
+        title = input('Add Todo: ')
+        if title == 'done':
             break
+
+        todo = Todo(title)
         todos.append(todo)
+
+    return todos
 
 
 def markAsDone(todos: list[str], done_todos: list[str]) -> None:
@@ -23,14 +32,18 @@ def deleteAllTodos(todos: list[str]):
     todos.clear()
 
 
-def printTodos(todos: list[str], done_todos: list[str]) -> None:
+def printTodos(todos: list[Todo]) -> None:
+
+    undone_todos = list(filter(lambda todo: not todo.isDone, todos))
+
     print('\nYour todos are: ')
 
-    if todos:
-        for index, todo in enumerate(todos):
-            print(f'{index+1}. {todo}')
-    else:
+    if not todos:
         print('No todos for today!')
+
+    for index, todo in enumerate(todos):
+        if not todo.isDone:
+            print(f'{index+1}. {todo.title}')
 
     if done_todos:
         print('Your done todos are: ')

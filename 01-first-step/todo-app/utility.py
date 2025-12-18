@@ -1,7 +1,7 @@
 from models.todo import Todo
 
 
-def handleAddTodo() -> list[Todo]:
+def add_todo() -> list[Todo]:
     todos: list[Todo] = []
 
     while True:
@@ -15,38 +15,39 @@ def handleAddTodo() -> list[Todo]:
     return todos
 
 
-def markAsDone(todos: list[str], done_todos: list[str]) -> None:
+def mark_as_done(todos: list[Todo]) -> list[Todo]:
     todoId = input('Enter todo\'s ID to mark as done: ')
     index = int(todoId) - 1
-    done_todo: str = todos.pop(index)
-    done_todos.append(done_todo)
+
+    return list(map(lambda todo: Todo(todo.title, True) if todos.index(todo) == index else todo, todos))
 
 
-def deleteTodo(todos: list[str]):
+def delete_todo(todos: list[Todo]) -> list[Todo]:
     todoId = input('Enter todo\'s ID to delete: ')
     index = int(todoId) - 1
-    del todos[index]
+
+    return list(filter(lambda todo: todos.index(todo) != index, todos))
 
 
-def deleteAllTodos(todos: list[str]):
-    todos.clear()
+def delete_all_todos() -> list[Todo]:
+    return []
 
 
-def printTodos(todos: list[Todo]) -> None:
+def print_todos(todos: list[Todo]) -> None:
 
     undone_todos = list(filter(lambda todo: not todo.isDone, todos))
+    done_todos = list(filter(lambda todo: todo.isDone, todos))
 
     print('\nYour todos are: ')
 
-    if not todos:
+    if not undone_todos:
         print('No todos for today!')
 
-    for index, todo in enumerate(todos):
-        if not todo.isDone:
-            print(f'{index+1}. {todo.title}')
+    for index, todo in enumerate(undone_todos):
+        print(f'{index+1}. {todo.title}')
 
     if done_todos:
         print('Your done todos are: ')
-        for index, done in enumerate(done_todos):
-            print(f'{index+1}. {done}')
+        for index, todo in enumerate(done_todos):
+            print(f'{index+1}. {todo.title}')
     print()

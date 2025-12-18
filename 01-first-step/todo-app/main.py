@@ -1,4 +1,4 @@
-from utility import printTodos, handleAddTodo, markAsDone, deleteTodo, deleteAllTodos
+from utility import print_todos, add_todo, mark_as_done, delete_todo, delete_all_todos
 from models.todo import Todo
 
 todos: list[Todo] = []
@@ -15,18 +15,19 @@ while True:
         print()
 
         if option == '1':
-            todos += handleAddTodo()
-            printTodos(todos, done_todos)
+            todos += add_todo()
+            print_todos(todos)
         elif option == '2':
-            markAsDone(todos, done_todos)
-            printTodos(todos, done_todos)
+            todos = mark_as_done(todos)
+            print_todos(todos)
         elif option == '3':
-            deleteTodo(todos)
-            printTodos(todos, done_todos)
+            todos = delete_todo(todos)
+            print_todos(todos)
         elif option == '4':
-            deleteAllTodos(todos)
-            printTodos(todos, done_todos)
+            todos = delete_all_todos()
+            print_todos(todos)
         elif option == 'q':
+            print('Bye Bye!')
             break
     except KeyboardInterrupt:
         print('\nBye Bye!')

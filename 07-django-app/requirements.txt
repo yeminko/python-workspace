@@ -1,5 +1,6 @@
 asgiref==3.11.1
 Django==6.0.3
+django-bootstrap5==26.2
 django-stubs==6.0.1
 django-stubs-ext==6.0.1
 sqlparse==0.5.5

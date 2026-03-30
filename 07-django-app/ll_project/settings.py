@@ -34,6 +34,10 @@ INSTALLED_APPS = [
     # My apps
     'learning_logs',
     'accounts',
+
+    # Third party settings
+    'django_bootstrap5',
+
     # Default django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,3 +126,5 @@ STATIC_URL = 'static/'
 
 # My Settings
 LOGIN_REDIRECT_URL = 'learning_logs:index'
+LOGOUT_REDIRECT_URL = 'learning_logs:index'
+LOGIN_URL = 'accounts:login'

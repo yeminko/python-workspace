@@ -1,12 +1,29 @@
 {% extends "learning_logs/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
- <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-
- <p>Edit entry:</p>
- <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
-   {% csrf_token %}
-   {{ form.as_div }}
-   <button name="submit">Save changes</button>
- </form>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></li>
+        <li class="breadcrumb-item active">Edit Entry</li>
+      </ol>
+    </nav>
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <h3 class="card-title mb-4">Edit Entry</h3>
+        <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{% url 'learning_logs:topic' topic.id %}" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

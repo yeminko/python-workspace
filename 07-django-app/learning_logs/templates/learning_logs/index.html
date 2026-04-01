@@ -1,7 +1,47 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
+<div class="py-5 text-center">
+    <div class="col-lg-7 mx-auto">
+        <h1 class="display-5 fw-bold mb-3">📓 Learning Log</h1>
+        <p class="lead mb-4">Track your learning journey. Create topics and log entries to document everything you've
+            explored and discovered.</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'learning_logs:topics' %}" class="btn btn-primary btn-lg px-4">My Topics</a>
+        {% else %}
+        <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg px-4 me-2">Get Started</a>
+        <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+        {% endif %}
+    </div>
+</div>
 
-<p>Learning Log</p>
-<p>Learning Log is a project that helps you keep track of your learning progress. You can create topics and add entries to those topics to document what you've learned.</p>
+<div class="row g-4 mt-2">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="fs-1 mb-3">📚</div>
+                <h5 class="card-title">Organize Topics</h5>
+                <p class="card-text text-muted">Group your learning into clear topics so nothing gets lost.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="fs-1 mb-3">✍️</div>
+                <h5 class="card-title">Log Entries</h5>
+                <p class="card-text text-muted">Write timestamped notes for each topic as you learn.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="fs-1 mb-3">🔒</div>
+                <h5 class="card-title">Private & Secure</h5>
+                <p class="card-text text-muted">Your notes are private — only you can see your topics.</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

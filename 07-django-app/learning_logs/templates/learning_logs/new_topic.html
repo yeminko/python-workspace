@@ -1,10 +1,22 @@
 {% extends "learning_logs/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-<p>Add a new topic:</p>
-<form action="{% url 'learning_logs:new_topic' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_div }}
-    <button name="submit">Add topic</button>
-</form>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h3 class="card-title mb-4">New Topic</h3>
+                <form action="{% url 'learning_logs:new_topic' %}" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary">Add Topic</button>
+                        <a href="{% url 'learning_logs:topics' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
